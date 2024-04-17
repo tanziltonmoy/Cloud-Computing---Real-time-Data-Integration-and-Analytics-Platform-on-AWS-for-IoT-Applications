@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS IoT Safe Driving Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AWS IoT Safe Driving Ignition Control</h1>
+        <button onclick="sendCommand(0)">Turn Ignition ON</button>
+        <button onclick="sendCommand(90)">Turn Ignition OFF</button>
+        <div id="data-display"></div>
+    </div>
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1016.0.min.js"></script>
+    <script>
+        AWS.config.update({
+            region: 'your-region',
+            credentials: new AWS.Credentials('your-access-key-id', 'your-secret-access-key')
+        });
+
+        var iotSiteWise = new AWS.IoTSiteWise();
+
+        var params = {
+            assetId: 'your-asset-id',
+            propertyId: 'your-property-id',
+            /* Additional parameters as needed */
+        };
+
+        iotSiteWise.getAssetPropertyValue(params, function(err, data) {
+            if (err) {
+                console.log(err, err.stack);
+                document.getElementById('data-display').innerText = 'Error fetching data';
+            } else {
+                console.log(data);
+                // Process and display the data in your HTML
+                document.getElementById('data-display').innerText = JSON.stringify(data, null, 2);
+            }
+        });
+
+        function sendCommand(angle) {
+            fetch(`https://pk7am8b755.execute-api.ap-southeast-1.amazonaws.com/prod/control?angle=${angle}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => alert(data.body))
+                .catch(error => alert('Error: ' + error.message));  // Changed to error.message for better clarity
+        }
+    </script>
+</body>
+</html>
