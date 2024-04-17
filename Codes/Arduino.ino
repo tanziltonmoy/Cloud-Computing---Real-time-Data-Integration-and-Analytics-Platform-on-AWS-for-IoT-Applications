@@ -37,7 +37,7 @@ String status;            // Status of driving legality
 // WiFi and API settings
 const char* ssid = WIFI_SSID;
 const char* password = WIFI_PASSWORD;
-const char* googleApiUrl = "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyBPQ66VyR4aqiZuKKNZOgz6JCHZQmnlDsY";
+const char* googleApiUrl = "";
 const char* shadowTopic = "$aws/things/ESP32_Alcohol/shadow/update";
 
 
