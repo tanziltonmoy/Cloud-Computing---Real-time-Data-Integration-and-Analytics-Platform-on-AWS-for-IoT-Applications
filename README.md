@@ -65,7 +65,7 @@ The former system employs an ESP32 Microcontroller integrated with an MQ3 Alcoho
 
 ## System Diagram of IoT based Alcohol Detection System (Old System)
 
-![Old System Architecture](figure/old_system_architecture.png)
+![Old System Architecture](figure/old_system_architecture.png.png)
 
 ## Transition to AWS
 
@@ -133,7 +133,7 @@ While AWS IoT Core operates on a pay-as-you-go pricing model, offering cost-effe
 ## System Architecture
 
 
-![System Architecture](figure/csystemarch.png)
+![System Architecture](figure/systemarch.png)
 
 ### ESP32 with Alcohol Sensor and Servo Motor
 
@@ -153,7 +153,7 @@ Refers to the publish/subscribe model where the ESP32 publishes data, and subscr
 
 ### Successful Integration of ESP32 and Sensor with AWS IoT Core
 
-![Live Alcohol Level Data through MQTT Publish Topic](figure/cpublish.png)
+![Live Alcohol Level Data through MQTT Publish Topic](figure/publish.png)
 
 ### IoT Rule
 
@@ -167,14 +167,14 @@ Several Lambda functions are used here. One is used for controlling the car igni
 
 It acts as an intermediary that triggers the Lambda function in response to HTTP requests.
 
-![Lambda and API](figure/cLambda.png)
+![Lambda and API](figure/Lambda.png)
 
 
 ### DynamoDB
 
 It stores sensor data and location information for future analysis.
 
-![Dynamodb](figure/cdynamodb.png)
+![Dynamodb](figure/dynamodb.png)
 
 
 ### Amazon S3
@@ -184,7 +184,7 @@ S3 is used to host the web application.
 - [Web Application on Amazon S3](https://iot-bucket-tanzil.s3.ap-southeast-1.amazonaws.com/index.html)
 
 
-![S3 web app](figure/capp.png)
+![S3 web app](figure/app.png)
 
 Figure shows a simple web application hosted on S3, It can be used by Local Police or Trusted contact to stop the ignition of the car. Once Ignition is off, it can not turn on automatically until the system is rebooted or the ignition on button is pressed. 
 
@@ -192,14 +192,14 @@ Figure shows a simple web application hosted on S3, It can be used by Local Poli
 ### IoT Sitewise and Sitewise Portal
 
 This service is used for monitoring, visualizing, and analyzing industrial IoT data at scale. The portal provides a web-based user interface to view live and historical data.
-![IoT Portal](figure/cmonitor.png)
+![IoT Portal](figure/monitor.png)
 
 
 ### SNS (Simple Notification Service)
 
 When certain conditions are met (e.g., high alcohol concentration), an alert will be sent through SNS to a subscribed email or SMS endpoint.
 
-![Email](figure/cemail.png)
+![Email](figure/email.png)
 
 
 ## Alignment with AWS Well-Architected Framework
