@@ -78,7 +78,7 @@ The former system employs an ESP32 Microcontroller integrated with an MQ3 Alcoho
 
 - **Real-time Data Monitoring:** Monitors sensor data in real-time, facilitating immediate analysis and decision-making processes.
 
-### AWS Lambda:
+### AWS da:
 
 - **Event-driven Logic:** Processes incoming data from Amazon Kinesis, executing logic based on alcohol level detection (e.g., comparing against threshold levels).
 - **Control Commands:** Sends commands to activate the relay module to prevent engine start-up if necessary, through AWS IoT Core.
@@ -96,7 +96,7 @@ The former system employs an ESP32 Microcontroller integrated with an MQ3 Alcoho
 - When the push button is pressed, the ESP32 activates the MQ3 Alcohol Sensor.
 - If alcohol is detected above the threshold level, the system prevents the vehicle’s engine from starting by changing the Servo Angle.
 - Real-time GPS Location tracking by using Google cloud Geolocation.
-- Sends real-time data to AWS IoT Core, which is processed and analyzed through AWS Lambda.
+- Sends real-time data to AWS IoT Core, which is processed and analyzed through AWS da.
 - Triggers an Amazon SNS notification to a predefined contact list.
 - Logs the event in Amazon DynamoDB for record-keeping.
 - Real-time Data Monitoring and visualization on Amazon IoT Sitewise.
@@ -157,17 +157,17 @@ Refers to the publish/subscribe model where the ESP32 publishes data, and subscr
 
 ### IoT Rule
 
-It is a rule that filters, transforms, and triggers actions based on MQTT messages and works as a bridge between IoT core and Lambda.
+It is a rule that filters, transforms, and triggers actions based on MQTT messages and works as a bridge between IoT core and da.
 
-### Lambda Functions
+### da Functions
 
-Several Lambda functions are used here. One is used for controlling the car ignition through an API Gateway. It publishes a message with the desired servo angle to the MQTT topic esp32/control. Another Lambda function processes incoming data, potentially logging it to DynamoDB and sending an alert if the alcohol level is above a threshold. Another has been utilized to display and monitor live sensor data and location data on IoT Sitewise portal.
+Several da functions are used here. One is used for controlling the car ignition through an API Gateway. It publishes a message with the desired servo angle to the MQTT topic esp32/control. Another da function processes incoming data, potentially logging it to DynamoDB and sending an alert if the alcohol level is above a threshold. Another has been utilized to display and monitor live sensor data and location data on IoT Sitewise portal.
 
 ### API Gateway
 
-It acts as an intermediary that triggers the Lambda function in response to HTTP requests.
+It acts as an intermediary that triggers the da function in response to HTTP requests.
 
-![Lambda and API](figure/Lambda.png)
+![Lambda and API](figure/lambda.png)
 
 
 ### DynamoDB
